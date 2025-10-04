@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelfree - Free Accommodation Community</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav">
+                <div class="logo" id="logo">
+    <h1><i class="fas fa-home"></i> Travelfree</h1>
+</div>
+
+                <nav class="nav-links">
+                    <a href="#" id="exploreBtn">Explore</a>
+                    <a href="#" id="hostBtn">Become a Host</a>
+                    <a href="#" id="photosBtn">Photos</a>
+                    <button class="btn-primary" id="loginBtn">Login</button>
+                    <button class="btn-secondary" id="signupBtn">Sign Up</button>
+                </nav>
+                <div class="mobile-menu-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+   <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h3><i class="fas fa-home"></i> Menu</h3>
+            <button class="mobile-menu-close" id="mobileMenuClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-content">
+            <a href="#" id="mobileExplore"><i class="fas fa-compass"></i> Explore</a>
+            <a href="#" id="mobileHost"><i class="fas fa-home"></i> Become a Host</a>
+            <a href="#" id="mobilePhotos"><i class="fas fa-camera"></i> Photos</a>
+            <a href="#" id="mobileLogin"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="#" id="mobileSignup"><i class="fas fa-user-plus"></i> Sign Up</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Welcome Section -->
+        <section class="hero" id="heroSection">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Connect. Stay. Explore.</h1>
+                    <p>Join a global community of travelers and hosts sharing free accommodation and cultural experiences.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary large" id="heroExploreBtn">Start Exploring</button>
+                        <button class="btn-secondary large" id="heroHostBtn">Offer Your Space</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explore Hosts Section -->
+        <section class="section" id="exploreSection" style="display: none;">
+            <div class="container">
+                <h2>Find Amazing Hosts</h2>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search by city, country..." id="searchInput">
+                    <button class="btn-primary" id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="hosts-grid" id="hostsGrid">
+                    <!-- Host cards will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Host Registration Section -->
+        <section class="section" id="hostSection" style="display: none;">
+            <div class="container">
+                <div class="host-form-container">
+                    <h2>Offer Your Space</h2>
+                    <form class="host-form" id="hostForm">
+                        <div class="form-group">
+                            <label>Accommodation Title</label>
+                            <input type="text" id="hostTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="hostDescription" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Room Type</label>
+                            <select id="roomType" required>
+                                <option value="">Select...</option>
+                                <option value="private">Private Room</option>
+                                <option value="shared">Shared Room</option>
+                                <option value="couch">Couch/Living Room</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" id="hostLocation" placeholder="City, Country" required>
+                        </div>
+                        <div class="form-group">
+                            <label>House Rules</label>
+                            <textarea id="houseRules" rows="3" placeholder="e.g., No smoking, No parties..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Upload Photos</label>
+                            <input type="file" id="hostPhotos" multiple accept="image/*">
+                        </div>
+                        <button type="submit" class="btn-primary">List Your Space</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Community Section -->
+        <section class="section" id="photosSection" style="display: none;">
+            <div class="container">
+                <div class="photos-header">
+                    <h2>Travel Inspiration</h2>
+                    <button class="btn-primary" id="uploadPhotoBtn"><i class="fas fa-plus"></i> Share Photo</button>
+                </div>
+                <div class="photos-grid" id="photosGrid">
+                    <!-- Photos will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- User Profile Section -->
+        <section class="section" id="profileSection" style="display: none;">
+            <div class="container">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                         <img src="images/profile.jpg" alt="Profile" id="profileAvatar">
+
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="profileName">Your Name</h2>
+                            <p id="profileBio">Tell us about yourself...</p>
+                            <div class="profile-stats">
+                                <span><i class="fas fa-star"></i> <span id="userRating">5.0</span></span>
+                                <span><i class="fas fa-comment"></i> <span id="reviewCount">0</span> reviews</span>
+                            </div>
+                        </div>
+                        <button class="btn-secondary" id="editProfileBtn">Edit Profile</button>
+<input type="file" id="profileImageInput" accept="image/*" style="display: none;">
+
+                    </div>
+                    
+                    <div class="profile-tabs">
+                        <button class="tab-btn active" data-tab="about">About</button>
+
+                        <button class="tab-btn" data-tab="requests">Requests</button>
+                        <button class="tab-btn" data-tab="reviews">Reviews</button>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="about">
+                            <div class="about-content">
+                                <h3>Languages</h3>
+                                <div class="tags" id="languages">
+                                    <span class="tag">English</span>
+                                </div>
+                                <h3>Interests</h3>
+                                <div class="tags" id="interests">
+                                    <span class="tag">Travel</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="hosting">
+                            <div class="hosting-content">
+                                <p>Your hosting listings will appear here.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="requests">
+    <div class="requests-content">
+        <div class="request-filters">
+            <button class="btn-small" onclick="app.loadUserRequests('host')">As Host</button>
+            <button class="btn-small" onclick="app.loadUserRequests('traveler')">As Traveler</button>
+            <button class="btn-small" onclick="app.loadUserRequests('all')">All</button>
+        </div>
+        <div id="requestsList">
+            <p>Your stay requests will appear here.</p>
+        </div>
+    </div>
+</div>
+                       <div class="tab-pane" id="reviews">
+    <div class="reviews-content">
+        <h3>User Reviews</h3>
+
+        <!-- Review List -->
+        <div class="reviews-list" id="reviewsList"></div>
+
+        <!-- Add Review Form -->
+        <div class="add-review">
+            <h4>Leave a Review</h4>
+            <form id="reviewForm">
+                <div class="form-group">
+                    <label>Rating</label>
+                    <select id="reviewRating" required>
+                        <option value="">Select...</option>
+                        <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                        <option value="4">⭐⭐⭐⭐ (4)</option>
+                        <option value="3">⭐⭐⭐ (3)</option>
+                        <option value="2">⭐⭐ (2)</option>
+                        <option value="1">⭐ (1)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Your Review</label>
+                    <textarea id="reviewText" rows="3" placeholder="Write your feedback..." required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Submit Review</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <span class="close" data-modal="loginModal">&times;</span>
+            </div>
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <input type="email" placeholder="Email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn-primary full-width" id="loginButton">Log In</button>
+                <div class="divider">or</div>
+                <button type="button" class="btn-google full-width" id="googleLogin">
+                    <i class="fab fa-google"></i> Continue with Google
+                </button>
+                <p class="auth-switch">Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Join Travelfree</h2>
+                <span class="close" data-modal="signupModal">&times;</span>
+            </div>
+            <form class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Full Name" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" id="signupPassword" required>
+                </div>
+                <button type="submit" class="btn-primary full-width" id="signupButton">Sign Up</button>
+                <div class="divider">or</div>
+                <button type="button" class="btn-google full-width" id="googleSignup">
+                    <i class="fab fa-google"></i> Continue with Google
+                </button>
+                <p class="auth-switch">Already have an account? <a href="#" id="switchToLogin">Log in</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Host Profile Modal -->
+     
+    <div class="modal large" id="hostProfileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="hostModalTitle">Host Profile</h2>
+                <span class="close" data-modal="hostProfileModal">&times;</span>
+            </div>
+            <div class="host-profile-content">
+                <div class="host-images">
+                    <img src="https://via.placeholder.com/400x300" alt="Accommodation" id="hostMainImage">
+                </div>
+                <div class="host-details">
+                    <div class="host-info">
+                        <h3 id="hostName">Host Name</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> <span id="hostLocationDetail">Location</span></p>
+                        <p><i class="fas fa-bed"></i> <span id="hostRoomType">Room Type</span></p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span id="hostRating">5.0</span>
+                            <span>(<span id="hostReviewCount">0</span> reviews)</span>
+                        </div>
+                    </div>
+                    <div class="host-description">
+                        <h4>About this place</h4>
+                        <p id="hostDescriptionText">Description will appear here.</p>
+                    </div>
+                    <div class="house-rules">
+                        <h4>House Rules</h4>
+                        <p id="hostRulesText">House rules will appear here.</p>
+                    </div>
+                    <button class="btn-primary full-width" id="sendRequestBtn">Send Stay Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Modal -->
+     
+    <div class="modal" id="requestModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Send Stay Request</h2>
+                <span class="close" data-modal="requestModal">&times;</span>
+            </div>
+            <form class="request-form" id="requestForm">
+                <div class="form-group">
+                    <label>Check-in Date</label>
+                    <input type="date" id="checkinDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Check-out Date</label>
+                    <input type="date" id="checkoutDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Number of Guests</label>
+                    <select id="guestCount" required>
+                        <option value="1">1 guest</option>
+                        <option value="2">2 guests</option>
+                        <option value="3">3 guests</option>
+                        <option value="4">4+ guests</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message to Host</label>
+                    <textarea id="requestMessage" rows="4" placeholder="Tell the host about yourself and your travel plans..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary full-width">Send Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div class="modal large" id="chatModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Chat with <span id="chatPartnerName">Host</span></h2>
+                <span class="close" data-modal="chatModal">&times;</span>
+            </div>
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Messages will be dynamically inserted here -->
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Type a message..." id="chatInputField">
+                    <input type="file" id="chatImageInput" accept="image/*" style="display: none;">
+                    <button type="button" id="chatImageBtn"><i class="fas fa-image"></i></button>
+                    <button type="button" id="chatSendBtn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Upload Modal -->
+    <div class="modal" id="photoUploadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Share Your Travel Photo</h2>
+                <span class="close" data-modal="photoUploadModal">&times;</span>
+            </div>
+            <form class="photo-upload-form" id="photoUploadForm">
+                <div class="form-group">
+                    <label>Choose Photo</label>
+                    <input type="file" id="uploadPhotoInput" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <label>Caption (optional)</label>
+                    <input type="text" id="photoCaption" placeholder="Where was this taken?">
+                </div>
+                <button type="submit" class="btn-primary full-width">Share Photo</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Toast Notifications -->
+    <div class="toast" id="toast">
+        <span id="toastMessage"></span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Travelfree. Built for the global travel community.</p>
+        </div>
+    </footer>
+
+    <!-- Add Firebase SDKs before your script.js -->
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
+<script>
+  // Your Firebase config here
+  const firebaseConfig = {
+    apiKey: "AIzaSyCGOX2nuQ5_kqCh4WHuj2RGCSxj0H2WyBU",
+            authDomain: "project4-6eb99.firebaseapp.com",
+            projectId: "project4-6eb99",
+            storageBucket: "project4-6eb99.firebasestorage.app",
+            messagingSenderId: "102064204095",
+            appId: "1:102064204095:web:ca53e0b92c446e0a33cb8a"
+  };
+  firebase.initializeApp(firebaseConfig);
+  window.firebaseAuth = firebase.auth();
+  window.firestore = firebase.firestore();
+</script>
+    <script src="script.js"></script>
+</body>
+</html>
